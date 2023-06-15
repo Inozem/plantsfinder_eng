@@ -17,7 +17,7 @@ MODELS_M2M_CHOICES = (UsdaZone, Sun, SoilType, SoilMoisture, SoilFertility,
 
 
 class Command(BaseCommand):
-    """Загрузка значений выбора для полей ManyToMany."""
+    """Creates values for ManyToMany fields."""
     help = 'Создает списки значений для выбора.'
 
     def handle(self, *args, **options):

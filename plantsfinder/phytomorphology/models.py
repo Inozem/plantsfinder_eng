@@ -68,7 +68,7 @@ class AutumnLeavesColour(MultipleChoiceColourField):
 
 class BloomColour(MultipleChoiceColourField):
     """Flower color class."""
-    ADDITIONAL_CHOICES = ('Не являются декоративными', 'Отсутствуют')
+    ADDITIONAL_CHOICES = ('Is not decorative', 'Does not have')
     CHOICES = tuple((i, i) for i in ADDITIONAL_CHOICES)
     MultipleChoiceColourField._meta.get_field('name').choices += CHOICES
 
@@ -79,7 +79,7 @@ class BloomColour(MultipleChoiceColourField):
 
 class BloomingPeriod(MultipleChoiceMonthsCharField):
     """Bloom season class."""
-    CHOICES = (('Отсутствует', 'Отсутствует'), )
+    CHOICES = (('Does not have', 'Does not have'), )
     MultipleChoiceMonthsCharField._meta.get_field('name').choices += CHOICES
 
     class Meta:

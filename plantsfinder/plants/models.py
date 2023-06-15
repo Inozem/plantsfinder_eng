@@ -11,222 +11,223 @@ from phytomorphology.models import (AutumnLeavesColour, BarkColour,
                                     YoungLeavesColour)
 from plants.filters.web_page_filter_fields import get_fields_with_values
 
-CHOICES_YES_NO = (('Есть', 'Есть'), ('Нет', 'Нет'))
+CHOICES_YES_NO = (('Has', 'Has'), ('Does not have', 'Does not have'))
 
 
 class NameSynonym(models.Model):
-    """Класс названий-синонимов растений."""
+    """Plant synonym class."""
     name = models.CharField(
         max_length=250,
-        verbose_name='Название растения',
+        verbose_name='Name of a plant',
         unique=True,
     )
 
     class Meta:
         ordering = ('name',)
-        verbose_name = 'Синоним названия растения'
-        verbose_name_plural = 'Синонимы названий растений'
+        verbose_name = 'Plant synonym'
+        verbose_name_plural = 'Plant synonyms'
 
     def __str__(self):
         return self.name
 
 
 class PlantInfo(models.Model):
-    """Родительский класс для всех растений."""
-    name_species_russian = models.CharField(
+    """Parent class for all plants."""
+    name_species_english = models.CharField(
         max_length=250,
-        verbose_name='Название рода, вида и формы на русском языке',
+        verbose_name='Name of the genus, species and form in English',
         null=True,
     )
     name_species_latin = models.CharField(
         max_length=250,
-        verbose_name='Название рода, вида и формы на латинском языке',
+        verbose_name='Name of the genus, species and form in Latin',
         null=True,
     )
     name_cultivar = models.CharField(
         max_length=250,
-        verbose_name='Название сорта',
+        verbose_name='Species',
         null=True,
         blank=True,
     )
     slug = slug = models.SlugField(
         max_length=75,
-        verbose_name='Ссылка',
+        verbose_name='Link',
         unique=True,
     )
     name_synonym = models.ForeignKey(
         NameSynonym,
         related_name='name_synonym',
-        verbose_name='Cинонимы названия растения',
+        verbose_name='Plant synonym',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
     )
     description = models.TextField(
-        verbose_name='Описание растения',
+        verbose_name='Plant description',
         null=True,
         blank=True,
     )
     image = models.ImageField(
         upload_to='image/',
-        verbose_name='Изображение',
+        verbose_name='Image',
         null=True,
         blank=True,
     )
 
     class Meta:
-        ordering = ('name_species_russian', 'name_cultivar', )
+        ordering = ('name_species_english', 'name_cultivar', )
         unique_together = ('name_species_latin', 'name_cultivar', )
 
     def __str__(self):
         is_name_cultivar = self.name_cultivar is not None
         name_cultivar = ['', f'"{self.name_cultivar}"'][is_name_cultivar]
-        return (f'{self.name_species_russian} {name_cultivar} - '
+        return (f'{self.name_species_english} {name_cultivar} - '
                 f'{self.name_species_latin} {name_cultivar}')
 
 
 class PlantBasicCharacteristics(PlantInfo):
-    """Класс основных характеристик, которые встречаются
-    у всех растений вне зависимости от категории.
+    """
+    A class of basic characteristics that are found in all plants,
+    regardless of category.
     """
     usda_zone = models.ManyToManyField(
         UsdaZone,
         related_name='usda_zone',
-        verbose_name='Зона морозостойкости',
+        verbose_name='USDA zone',
     )
     sun = models.ManyToManyField(
         Sun,
         related_name='sun',
-        verbose_name='Отношение к свету',
+        verbose_name='Sun exposure',
     )
     max_height = models.DecimalField(
-        verbose_name='Максимальная высота (м)',
+        verbose_name='Maximum height (м)',
         max_digits=5,
         decimal_places=2,
         validators=[MinValueValidator(
             0,
-            'Высота растения не может быть меньше 0 м'
+            'The height of the plant cannot be less 0 м'
         ), MaxValueValidator(
             150,
-            'На Земле не существует растений выше 150 м'
+            'There are no plants on Earth higher than 150 м'
         )],
         null=True,
     )
     max_width = models.DecimalField(
-        verbose_name='Максимальная ширина (м)',
+        verbose_name='Maximum width (м)',
         max_digits=5,
         decimal_places=2,
         validators=[MinValueValidator(
             0,
-            'Ширина растения не может быть меньше 0 м'
+            'The width of the plant cannot be less 0 м'
         ), MaxValueValidator(
             150,
-            'На Земле не существует растений шире 150 м'
+            'There are no plants on Earth wider than 150 м'
         )],
         null=True,
     )
 
 
 class Deciduous(PlantBasicCharacteristics):
-    """Класс лиственных деревьев, кустарников и лиан."""
+    """Class of deciduous trees, shrubs and lianes."""
     fields = {}
 
     soil_type = models.ManyToManyField(
         SoilType,
         related_name='soil_type',
-        verbose_name='Тип почвы',
+        verbose_name='Soil type',
     )
     soil_moisture = models.ManyToManyField(
         SoilMoisture,
         related_name='soil_moisture',
-        verbose_name='Влажность почвы',
+        verbose_name='Soil moisture',
     )
     soil_fertility = models.ManyToManyField(
         SoilFertility,
         related_name='soil_fertility',
-        verbose_name='Плодородие почвы',
+        verbose_name='Soil fertility',
     )
     soil_ph = models.ManyToManyField(
         SoilPh,
         related_name='soil_ph',
-        verbose_name='Кислотность почвы',
+        verbose_name='Soil pH',
     )
     life_form = models.ManyToManyField(
         LifeForm,
         related_name='life_form',
-        verbose_name='Жизненная форма',
+        verbose_name='Life form',
     )
     type_plant_deciduous = models.ManyToManyField(
         TypePlantDeciduous,
         related_name='type_plant_deciduous',
-        verbose_name='Тип растения',
+        verbose_name='Plant type',
     )
     leaves_colour = models.ManyToManyField(
         LeavesColour,
         related_name='leaves_colour',
-        verbose_name='Цвет листьев',
+        verbose_name='Leaves color',
     )
     leaves_colour_changes = models.ManyToManyField(
         LeavesColourChanges,
         related_name='leaves_colour_changes',
-        verbose_name='Изменение окраски листьев',
+        verbose_name='Leaves color changes',
     )
     young_leaves_colour = models.ManyToManyField(
         YoungLeavesColour,
         related_name='young_leaves_colour',
-        verbose_name='Цвет молодых листьев',
+        verbose_name='Young leaves color',
     )
     autumn_leaves_colour = models.ManyToManyField(
         AutumnLeavesColour,
         related_name='autumn_leaves_colour',
-        verbose_name='Цвет осенней окраски листьев',
+        verbose_name='Autumn leaves color',
     )
     bloom_colour = models.ManyToManyField(
         BloomColour,
         related_name='bloom_colour',
-        verbose_name='Цвет цветов',
+        verbose_name='Flower color',
     )
     blooming_period = models.ManyToManyField(
         BloomingPeriod,
         related_name='blooming_period',
-        verbose_name='Период декоративности цветения',
+        verbose_name='Bloom season',
     )
     fragrance = models.CharField(
         max_length=50,
         choices=CHOICES_YES_NO,
-        verbose_name='Наличие аромата',
+        verbose_name='Presence of fragrance',
         null=True,
     )
     bark_colour = models.ManyToManyField(
         BarkColour,
         related_name='bark_colour',
-        verbose_name='Цвет коры',
+        verbose_name='Bark color',
     )
     fruit_colour = models.ManyToManyField(
         FruitColour,
         related_name='fruit_colour',
-        verbose_name='Цвет плодов',
+        verbose_name='Fruit color',
     )
     other_types_decoration = models.ManyToManyField(
         OtherTypesDecoration,
         related_name='other_types_decoration',
-        verbose_name='Прочие виды декоративности',
+        verbose_name='Other types of decoration',
     )
     spines = models.CharField(
         max_length=50,
         choices=CHOICES_YES_NO,
-        verbose_name='Наличие колючек',
+        verbose_name='The presence of spines',
         null=True,
     )
     poison_parts = models.ManyToManyField(
         PoisonParts,
         related_name='poison_parts',
-        verbose_name='Ядовитые части',
+        verbose_name='Poison parts',
     )
 
     class Meta:
-        verbose_name = 'Лиственное дерево, кустарник или лиана'
-        verbose_name_plural = 'Лиственные деревья, кустарники и лианы'
+        verbose_name = 'Deciduous tree, shrub and liane'
+        verbose_name_plural = 'Deciduous trees, shrubs and lianes'
 
     def save(self, *args, **kwargs):
         super(self.__class__, self).save(*args, **kwargs)

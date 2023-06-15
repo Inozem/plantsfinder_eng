@@ -14,8 +14,8 @@ FIELDS_MIN_MAX = ('max_height', 'max_width', 'soil_ph')
 
 def sort_plant_fields(plant_fields):
     """
-    Функция сортировки полей для вывода в правильном порядке
-    на странице подбора растений.
+    Returns a dictionary with field assignments and
+    their models that are needed to be displayed on the plant selection page.
     """
     sorted_fields = {}
     for field in FIELDS_ORDER:
@@ -43,8 +43,8 @@ def get_plant_class_fields(plant_class, PlantInfo):
 
 def collect_values(plant_class, fields_and_names):
     """
-    Функция собирает словарь из названий полей
-    и списка их значений (или id значений).
+    Collects field names and lists of their values (or id values).
+    And return a dictionary with this data.
     """
     field_values = {}
     plants = plant_class.objects.all()
@@ -61,8 +61,8 @@ def collect_values(plant_class, fields_and_names):
 
 def add_values(plant_class, field_values, fields_and_names, field_name):
     """
-    Функция переделывает список значений или id в словарь
-    с добавлением значений (если было id).
+    Converts the list of values or id into a dictionary
+    with the addition of values (if there was an id).
     """
     ids_and_values = {}
 
@@ -88,10 +88,10 @@ def add_values(plant_class, field_values, fields_and_names, field_name):
 
 
 def get_fields_with_values(plant_class, PlantInfo):
-    """Функция возвращает необходимые поля необходимые
-    для отображения на странице подбора растений
-    только с теми значениями, которые используются в данном классе
-    в формате:
+    """
+    Returns the necessary fields required for display
+    on the plant selection page
+    only with the values that are used in this class in the format:
     {
         <verbose_name>: {
             'field_related_name': <related_name>,
@@ -100,8 +100,8 @@ def get_fields_with_values(plant_class, PlantInfo):
         ...,
     }
 
-    Для последующего преобразования этих данных в поля фильтров растений
-    на странице сайта.
+    For the subsequent transformation of this data into
+    the fields of plant filters in template.
     """
     fields_and_names = get_plant_class_fields(plant_class, PlantInfo)
     fields_names_and_values = collect_values(plant_class, fields_and_names)

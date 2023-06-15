@@ -3,9 +3,9 @@ from django.db.models import Max, Min
 
 def filter_plants(plants, filters):
     """
-    Фильтрация растений в соответствии с запросом и
-    создание переменной с минимальными и максимальными значениями фильтров
-    (если они были в запросе).
+    Filters plants according to the request and
+    creates a variable with the minimum and maximum values of the filters
+    (if they were in the request).
     """
     filters_min_max = {}
     for filter_name in filters:

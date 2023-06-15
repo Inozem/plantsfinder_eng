@@ -14,7 +14,7 @@ TEST_DATA_AMOUNT = 5
 
 
 class Command(BaseCommand):
-    """Создание тестового супер-пользователя и тестовых данных для БД."""
+    """Creates a test super-user and test data for the database."""
     help = 'Создает тестовые данные для отладки.'
 
     def handle(self, *args, **options):
@@ -35,6 +35,7 @@ class Command(BaseCommand):
                 self.create_plant(plant_class, plant_fields)
 
     def create_plant(self, plant_class, fields_and_names):
+        """Creates plants."""
         data = {}
         many_to_many_fields = {}
         for field_name, field_model in fields_and_names.items():
@@ -60,13 +61,16 @@ class Command(BaseCommand):
             getattr(plant, field_name).set(choices)
 
     def get_string_random(self):
+        """Creates random string."""
         letters = [chr(randint(97, 122)) for _ in range(randint(5, 20))]
         return ''.join(letters).capitalize()
 
     def get_number_random(self):
+        """Creates random number."""
         return randint(1, 14)
 
     def get_choice_random(self, model):
+        """Makes a random selection."""
         field_model = model.related_model
         field_choices = field_model._meta.get_field('name').choices
         choice_number = randint(0, len(field_choices) - 1)

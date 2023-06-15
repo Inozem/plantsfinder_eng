@@ -21,7 +21,7 @@ PLANTS_PER_PAGE = 24
 
 
 def plants_list(request, category):
-    """Страницы подбора рестений."""
+    """Creates plant selection pages."""
     template = 'plants/finder.html'
     filters = request.GET
     plant_type_model = PLANTS_TYPES[category]
@@ -45,7 +45,7 @@ def plants_list(request, category):
 
 
 def plant_info(request, category, plant_slug):
-    """Страницы с информацией о растении."""
+    """Creates page with the information about a plant."""
     template = 'plants/plant_info.html'
     plant = get_object_or_404(PLANTS_TYPES[category], slug=plant_slug)
     context = {
