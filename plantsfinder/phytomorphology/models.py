@@ -2,120 +2,120 @@ from utils.fields import (MultipleChoiceCharField, MultipleChoiceColourField,
                           MultipleChoiceMonthsCharField)
 
 CHOICES = {
-    'life form': ['Дерево', 'Кустарник', 'Почвопокровный кустарник', 'Лиана'],
-    'type plant': ['Листопадное', 'Полувечнозеленое', 'Вечнозеленое'],
-    'leaves colour changes': ['Осенняя окраска', 'Молодые листья',
-                              'Отсутствует'],
-    'other types of decoration': ['Декоративность в зимний период',
-                                  'Цветки до появления листьев',
-                                  'Цветки после опадания листьев',
-                                  'Форма ветвей', 'Отсутствуют'],
-    'poison parts': ['Кора', 'Корни', 'Листья', 'Плоды', 'Семена', 'Сок',
-                     'Цветы', 'Отсутствуют'],
+    'life form': ['Tree', 'Shrub', 'Ground cover shrub', 'Liana'],
+    'type plant': ['Deciduous', 'Semi-evergreen', 'Evergreen'],
+    'leaves colour changes': ['Autumn leaf color', 'Color of young leaves',
+                              'Not changing'],
+    'other types of decoration': ['Decoration in winter',
+                                  'Flowers appear before the leaves',
+                                  'Flowers appear after the leaves fall',
+                                  'Shape of branches', 'No other types'],
+    'poison parts': ['Bark', 'Roots', 'Leaves', 'Fruits', 'Seeds', 'Sap',
+                     'Flowers', 'Not poisonous'],
 }
 
 
 class LifeForm(MultipleChoiceCharField):
-    """Класс жизненной формы растений."""
+    """Life form class."""
     CHOICES = tuple((i, i) for i in CHOICES['life form'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
-        verbose_name = 'Жизненная форма растения'
-        verbose_name_plural = 'Жизненные формы растений'
+        verbose_name = 'Plant life form'
+        verbose_name_plural = 'Plant life forms'
 
 
 class TypePlantDeciduous(MultipleChoiceCharField):
-    """Класс типов лиственных растений."""
+    """Deciduous plant type class."""
     CHOICES = tuple((i, i) for i in CHOICES['type plant'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
-        verbose_name = 'Тип растения'
-        verbose_name_plural = 'Типы растений'
+        verbose_name = 'Plant type'
+        verbose_name_plural = 'plant types'
 
 
 class LeavesColour(MultipleChoiceColourField):
-    """Класс цвета листьев."""
+    """Leaves color class."""
     class Meta:
-        verbose_name = 'Цвет листьев'
-        verbose_name_plural = 'Цвета листвьев'
+        verbose_name = 'Leaves color'
+        verbose_name_plural = 'Leaves colors'
 
 
 class LeavesColourChanges(MultipleChoiceCharField):
-    """Класс сезонного изменения окраски листьев."""
+    """Class of seasonal leaves color change."""
     CHOICES = tuple((i, i) for i in CHOICES['leaves colour changes'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
-        verbose_name = 'Изменение окраски листьев'
-        verbose_name_plural = 'Изменения окраски листьев'
+        verbose_name = 'Seasonal leaves color change'
+        verbose_name_plural = 'Seasonal leaves color changes'
 
 
 class YoungLeavesColour(MultipleChoiceColourField):
-    """Класс цвета молодых листьев."""
+    """Young leaves color class."""
     class Meta:
-        verbose_name = 'Цвет молодых листьев'
-        verbose_name_plural = 'Цвета молодых листвьев'
+        verbose_name = 'Young leaves color'
+        verbose_name_plural = 'Young leaves colors'
 
 
 class AutumnLeavesColour(MultipleChoiceColourField):
-    """Класс цвета осенней окраски листьев."""
+    """Autumn leaf color class."""
     class Meta:
-        verbose_name = 'Осенняя окраска листьев'
-        verbose_name_plural = 'Осенняя окраска листьев'
+        verbose_name = 'Autumn leaf color'
+        verbose_name_plural = 'Autumn leaf colors'
 
 
 class BloomColour(MultipleChoiceColourField):
-    """Класс цвета цветов."""
+    """Flower color class."""
     ADDITIONAL_CHOICES = ('Не являются декоративными', 'Отсутствуют')
     CHOICES = tuple((i, i) for i in ADDITIONAL_CHOICES)
     MultipleChoiceColourField._meta.get_field('name').choices += CHOICES
 
     class Meta:
-        verbose_name = 'Цвет цветов'
-        verbose_name_plural = 'Цвета цветов'
+        verbose_name = 'Flower color'
+        verbose_name_plural = 'Flower colors'
 
 
 class BloomingPeriod(MultipleChoiceMonthsCharField):
-    """Класс периода цветения."""
+    """Bloom season class."""
     CHOICES = (('Отсутствует', 'Отсутствует'), )
     MultipleChoiceMonthsCharField._meta.get_field('name').choices += CHOICES
 
     class Meta:
-        verbose_name = 'Период цветения'
-        verbose_name_plural = 'Периоды цветения'
+        verbose_name = 'Bloom season'
+        verbose_name_plural = 'Bloom seasons'
 
 
 class BarkColour(MultipleChoiceColourField):
-    """Класс цвета коры."""
+    """Bark color class."""
     class Meta:
-        verbose_name = 'Цвет коры'
-        verbose_name_plural = 'Цвета коры'
+        verbose_name = 'Bark color'
+        verbose_name_plural = 'Bark colorы'
 
 
 class FruitColour(MultipleChoiceColourField):
-    """Класс цвета плодов."""
+    """Fruit color class."""
     class Meta:
-        verbose_name = 'Цвет плодов'
-        verbose_name_plural = 'Цвета плодов'
+        verbose_name = 'Fruit color'
+        verbose_name_plural = 'Fruit color'
 
 
 class OtherTypesDecoration(MultipleChoiceCharField):
-    """Класс прочих видов декоративности."""
+    """Class of other types of decoration."""
     CHOICES = tuple((i, i) for i in CHOICES['other types of decoration'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
-        verbose_name = 'Прочие виды декоратичности'
-        verbose_name_plural = 'Прочие виды декоратичности'
+        verbose_name = 'Other type of decoration'
+        verbose_name_plural = 'Other types of decoration'
 
 
 class PoisonParts(MultipleChoiceCharField):
-    """Класс ядовитых частей."""
+    """Class of poisonous plant parts."""
     CHOICES = tuple((i, i) for i in CHOICES['poison parts'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
-        verbose_name = 'Ядовитые части'
-        verbose_name_plural = 'Ядовитые части'
+        verbose_name = 'Poisonous plant part'
+        verbose_name_plural = 'Poisonous plant parts'
