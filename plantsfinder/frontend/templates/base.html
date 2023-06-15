@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html lang="ru">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> -->
+    <script src="{% static 'jquery/js/jquery-3.2.1.slim.min.js' %}"></script>
+    <script src="{% static 'popper/js/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <title>
+      {% block title %}
+        Plantsfinder
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    <div class="container body-container">
+      <header>
+        {% include 'includes/header.html' %}
+      </header>
+      <main class="row">
+        {% block content %}
+          Контент не подвезли :(
+        {% endblock %}
+      </main>
+      <footer class="text-center py-3 footer-container">
+        {% include 'includes/footer.html' %} 
+      </footer>
+    </div>
+  </body>
+</html> 

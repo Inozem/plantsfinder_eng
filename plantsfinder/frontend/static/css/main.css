@@ -1,0 +1,205 @@
+:root{
+  --color-background: #fbf8f5;
+  --color-dark: #689c54;
+  --color-medium: #83b271;
+  --color-light: #a0c492;
+}
+
+h1{
+  font-size: 1.3rem;
+}
+
+h2{
+  font-size: 1rem;
+}
+
+.no-link{
+  text-decoration: none;
+  color: black;
+}
+
+.body-container {
+  background-color: var(--color-background);
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px -2px grey;
+}
+
+.margin-lf-8{
+  margin-left: 8px;
+}
+
+.margin-tp-8{
+  margin-top: 8px;
+}
+
+.margin-tp-16{
+  margin-top: 16px;
+}
+
+.padding-lf-8{
+  padding-left: 8px;
+}
+
+.padding-lf-20{
+  padding-left: 20px;
+}
+
+
+@media (max-width:991px) {
+  .sm-line{
+    width: 100%;
+    border-top: 1px solid var(--color-light);
+    margin-top: 16px;
+  }
+}
+
+/* Header */
+
+nav{
+  margin: 0 8px 0 8px;
+  border-bottom: 1px solid var(--color-light);
+}
+
+nav a{
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+.navbar-link-hovering a::after{ 
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  display: block;
+  background: none repeat scroll 0 0 transparent;
+  height: 2px;
+  width: 0;
+  background: var(--color-light);
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+}
+
+.navbar-link-hovering a:hover::after{ 
+  width: 100%; 
+  left: 0; 
+}
+
+/* Plantsfinder, body, main */
+
+main{
+  padding: 16px 0 16px 0;
+}
+
+/* Plantsfinder, filters */
+
+@media (min-width:992px) {
+  .filter-container-border{
+    border-right: 1px solid var(--color-light);
+  }
+}
+
+.input-value{
+  margin-left: 5px;
+}
+
+summary {
+	cursor: pointer;
+}
+
+summary:hover b{
+  color: var(--color-medium);
+}
+
+/* Plantsfinder, plants list */
+
+.plant-card{
+  padding: 10px 8px;
+}
+
+.plant-card:hover {
+  background: rgba(160, 196, 146, 0.1);
+  border-radius: 10px;
+}
+
+.plant-card-image{
+  width: 100%;
+}
+
+/* Pagination */
+
+.pagination-lvl{
+  width: 100%;
+}
+
+.pagination{
+  width: 287px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.page-number{
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+  margin: 3px;
+}
+
+.page-number:hover{
+  background: rgba(160, 196, 146, 0.1);
+}
+
+.page-number a{
+  display: block;
+  margin: auto;
+  text-align: center;
+  margin-top: 5px;
+  font-size: medium;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+}
+
+.page-number-current{
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+  margin: 3px;
+  background-color: var(--color-medium);
+}
+
+.page-number-current p{
+  display: block;
+  margin: auto;
+  text-align: center;
+  margin-top: 5px;
+  font-size: medium;
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+}
+
+.page-ellipsis{
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+  margin: 3px;
+}
+
+.page-ellipsis p{
+  display: block;
+  margin: auto;
+  text-align: center;
+  margin-top: 5px;
+  font-size: medium;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+}
+
+
+/* Footer */
+
+.footer-container{
+  margin: 0 8px 0 8px;
+  border-top: 1px solid var(--color-light);
+}

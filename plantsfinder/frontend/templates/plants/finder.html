@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load filter %}
+{% load static %}
+{% block title %}Подбор растений{% endblock %}
+{% block content %}
+<div class="filter-container-border col-xxl-3 col-xl-3 col-lg-4 col-12">
+  <form class="d-flex align-content-start flex-wrap col-12" action="{{ domain }}{% url 'plants:plants_list' plant_category %}" method="get">
+    <!-- {% csrf_token %} -->
+    <div class="col-12" style="padding: 0 8px 0 8px;">
+      <button type="submit">Найти</button></br>
+    </div>
+    </br>
+
+    {% for field_name, field_items in fields.items %}
+      <div class="col-sm-6 col-md-6 col-lg-12 col-xl-12 col-xxl-12 col-12 margin-tp-16">
+        <details
+          {% with field_name_min=field_items.field_related_name|add:"-min" field_name_max=field_items.field_related_name|add:"-max"%}
+            {% if field_items.field_related_name in request.GET or field_name_min in filters or field_name_max in filters %}
+              open
+            {% endif %}
+            class="col-12 padding-lf-8">
+            <summary>
+              <b>{{ field_name }}:</b></br>
+            </summary>
+            <div class="padding-lf-20" >
+              {% for field_value_ind, field_value in field_items.values.items %}
+                {% if field_value_ind == "min" or field_value_ind == "max" %}
+                  {% if field_value_ind == "min" %}
+                    от <input class="margin-tp-8" name="{{ field_name_min }}" type="number" placeholder="{{ field_value }}"
+                      {% if field_name_min in filters %}
+                        value="{{ filters|get_value_from_dict:field_name_min }}" 
+                      {% endif %}
+                    step="0.01"><br>
+                  {% else %}
+                    до <input class="margin-tp-8" name="{{ field_name_max }}" type="number" placeholder="{{ field_value }}"
+                      {% if field_name_max in filters %}
+                        value="{{ filters|get_value_from_dict:field_name_max }}"
+                      {% endif %}
+                    step="0.01">
+                  {% endif %}
+                {% else %}
+                  <input class="regular-checkbox" id="{{ field_items.field_related_name }}{{ field_value_ind}}" type="checkbox" name="{{ field_items.field_related_name }}" value="{{ field_value_ind}}"
+                    {% if field_items.field_related_name in request.GET and field_value_ind in request.GET|get_value_list:field_items.field_related_name %}
+                      checked
+                    {% endif %}
+                  >
+                  <label for="{{ field_items.field_related_name }}{{ field_value_ind}}" class="input-value">{{ field_value }}</label>
+                  </br>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endwith %}
+        </details>
+      </div>
+    {% endfor %}
+
+    <div class="col-12 margin-tp-8 padding-lf-8">
+      <button type="submit">Найти</button></br>
+    </div>
+  </form>
+</div>
+
+<div class="plants-list-container-border d-flex align-content-start flex-wrap col-xxl-9 col-xl-9 col-lg-8 col-12" >
+  <div class="sm-line"></div>
+  {% if plants %}
+    {% for plant in plants %}
+      <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 col-xxl-4 plant-card">
+        <a class="no-link" href="./{{ plant.slug }}">
+          <div style="height: 100%;">
+            <img class="plant-card-image" 
+              {% if plant.image %}
+                src="../../media/{{ plant.image }}" alt="{{ plant }}"
+              {% else %}
+                src="../../static/img/no_image.webp"
+              {% endif %}
+            >
+            <p> {{ plant }}</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  {% else %}
+  <p>По вашему запросу ничего не найдено.</p>
+  {% endif%}
+
+  {% if pagination %}
+    <div class="pagination-lvl" style="width:100%;">
+      <div class="pagination d-flex align-content-start flex-wrap">
+        {% if pagination.first_page %}
+          <div class="page-number">
+            <a href="{{ query_string }}page={{ pagination.first_page }}">{{ pagination.first_page }}</a>
+          </div>
+        {% endif %}
+        {% if pagination.first_ellipsis %}
+          <div class="page-ellipsis">
+            <p> ... </p>
+          </div>
+        {% endif %}
+        {% if pagination.previous_page %}
+          <div class="page-number">
+            <a href="{{ query_string }}page={{ pagination.previous_page }}">{{ pagination.previous_page }}</a>
+          </div>
+        {% endif %}
+        {% if pagination.page_number %}
+          <div class="page-number-current font-weight-normal">
+            <p>{{ pagination.page_number }}</p>
+          </div>
+        {% endif %}
+        {% if pagination.next_page %}
+          <div class="page-number">
+            <a href="{{ query_string }}page={{ pagination.next_page }}">{{ pagination.next_page }}</a>
+          </div>
+        {% endif %}
+        {% if pagination.last_ellipsis %}
+          <div class="page-ellipsis">
+            <p> ... </p>
+          </div>
+        {% endif %}
+        {% if pagination.last_page %}
+          <div class="page-number">
+            <a href="{{ query_string }}page={{ pagination.last_page }}">{{ pagination.last_page }}</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
