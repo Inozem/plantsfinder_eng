@@ -1,1 +1,1 @@
-#Django ругается без этого файла
+#Django complains without this file

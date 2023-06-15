@@ -6,16 +6,15 @@ from django.db.models.fields import CharField, DecimalField, SlugField
 from django.db.models.fields.related import ManyToManyField
 from django.shortcuts import get_object_or_404
 
-from plants.models import Deciduous, PlantInfo
-from plants.web_page_filter_fields import get_plant_class_fields
+from plants.models import Deciduous
 
 PLANT_CLASSES = [Deciduous, ]
-TEST_DATA_AMOUNT = 5
+TEST_DATA_AMOUNT = 35
 
 
 class Command(BaseCommand):
     """Creates a test super-user and test data for the database."""
-    help = 'Создает тестовые данные для отладки.'
+    help = 'Creates a test super-user and test data for the database.'
 
     def handle(self, *args, **options):
         User.objects.create_superuser('Anon', 'anon@test.com', 'qweqwe')

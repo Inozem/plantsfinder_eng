@@ -1,8 +1,8 @@
 def get_plant_name(plant):
-    """Получение названия растения."""
+    """Returns the name of a plant."""
     is_name_cultivar = plant.name_cultivar is not None
     name_cultivar = ['', f'"{plant.name_cultivar}"'][is_name_cultivar]
-    plant_name = (f'{plant.name_species_russian} {name_cultivar} '
+    plant_name = (f'{plant.name_species_english} {name_cultivar} '
                   f'({plant.name_species_latin} {name_cultivar})')
     return plant_name
 
