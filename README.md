@@ -1,4 +1,4 @@
-# Description of the Plantsfinder (automated plant selection project)
+# Plantsfinder
 Plantsfinder is a catalog of plants with an automated selection of their assortment. It is used by both amateur gardeners and professionals in the field of landscape design. The material is presented in simple language, understandable to a person who does not have special knowledge. At the same time, descriptions of plants are detailed and contain all the information necessary for work.
 
 Plantsfinder helps when:
