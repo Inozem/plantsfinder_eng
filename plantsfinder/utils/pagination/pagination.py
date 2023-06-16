@@ -2,7 +2,7 @@ from math import ceil
 
 
 def get_pagination(request, objects, objects_per_page):
-    """Пагинация."""
+    """Pagination."""
     page_number = request.GET.get('page')
     if not page_number:
         page_number = 1

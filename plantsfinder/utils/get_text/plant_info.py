@@ -8,18 +8,18 @@ def get_plant_name(plant):
 
 
 def get_plant_usda_zones_min_max(plant):
-    """Получение минимальной и максимальной зон морозостойкости растения."""
+    """Returns the minimum and maximum USDA zones of the plant."""
     usda_zones = sorted([zone.name for zone in plant.usda_zone.all()])
     return f'{usda_zones[0]}-{usda_zones[-1]}'
 
 
 def get_plant_sun_types(plant):
-    """Получение типов освещенности."""
+    """Returns sun exposure types of the plant."""
     return ', '.join([sun.name for sun in plant.sun.all()]).lower()
 
 
 def get_plant_soil_types(plant):
-    """Получение типов почвы."""
+    """Returns soil types of the plant."""
     soil_types = [soil.name for soil in plant.soil_type.all()]
     soil_types += [soil.name for soil in plant.soil_fertility.all()]
     text = ', '.join(soil_types[:-1]) + ' и ' + soil_types[-1]
@@ -27,13 +27,13 @@ def get_plant_soil_types(plant):
 
 
 def get_plant_soil_ph_min_max(plant):
-    """Получение минимальной и максимальной кислотности почвы растения."""
+    """Returns the minimum and maximum optimal level of soil pH of the plant."""
     soil_ph = sorted([ph.name for ph in plant.soil_ph.all()])
     return f'{soil_ph[0]}-{soil_ph[-1]}'
 
 
 def get_plant_soil_moisture(plant):
-    """Получение получение данных о влажности почвы растения."""
+    """Returns soil moisture types of the plant."""
     extreme_moisture = {
         'Возможна засуха': 'засуху',
         'Возможны затопления': 'затопления',

@@ -1,6 +1,6 @@
 def delete_page_from_query_string(request):
     """
-    Удаление данных от номере страницы из строки запроса.
+    Returns the query string without a page number.
     """
     query_string = request.META['QUERY_STRING']
     if query_string:

@@ -4,6 +4,7 @@ from django.db import models
 
 
 class MultipleChoiceCharField(models.Model):
+    """Choice class."""
     CHOICES = ()
     name = models.CharField(
         max_length=50,
@@ -22,23 +23,21 @@ class MultipleChoiceCharField(models.Model):
 
 
 class MultipleChoiceColourField(MultipleChoiceCharField):
-    """Класс цветов."""
+    """Color class."""
     COLOURS = (
-        'Белый',
-        'Бронзоватый',
-        'Голубой',
-        'Желтый',
-        'Зеленый',
-        'Коричневый',
-        'Красный',
-        'Оранжевый',
-        'Розовый',
-        'Серебристый',
-        'Серый',
-        'Сизый',
-        'Синий',
-        'Фиолетовый',
-        'Черный',
+        'Black',
+        'Blue',
+        'Bronzish',
+        'Brown',
+        'Green',
+        'Grey',
+        'Orange',
+        'Pink',
+        'Red',
+        'Silver',
+        'Violet',
+        'White',
+        'Yellow',
     )
     CHOICES = tuple((i, i) for i in COLOURS)
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
@@ -48,20 +47,20 @@ class MultipleChoiceColourField(MultipleChoiceCharField):
 
 
 class MultipleChoiceMonthsCharField(MultipleChoiceCharField):
-    """Класс цветов."""
+    """Months class."""
     MONTHS = (
-        'Январь',
-        'Февраль',
-        'Март',
-        'Апрель',
-        'Май',
-        'Июнь',
-        'Июль',
-        'Август',
-        'Сентябрь',
-        'Октябрь',
-        'Ноябрь',
-        'Декабрь',
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
     )
     CHOICES = tuple((i, i) for i in MONTHS)
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
