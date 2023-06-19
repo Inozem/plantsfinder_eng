@@ -8,8 +8,7 @@ Plantsfinder helps when:
 
 Plant selection criteria are arranged in order of importance, with the critical ones coming first. At the very beginning, you specify the characteristics of the place for which you select the assortment. Then come the external signs of the plant - how it should look: width, height, decorative parts and other details.
 
-## Tech Stack
-### Main:
+## Tech Stack:
 - Django 3.2.15
 - Docker 20.10.17
 - Docker-compose 2.10.2
@@ -17,14 +16,10 @@ Plant selection criteria are arranged in order of importance, with the critical 
 - Gunicorn 20.0.4
 - PostgreSQL 13.0
 
-### Additional:
-- Pillow 9.4.0
-- Python-dotenv 0.21.0
-
-## Запуск проекта локально
+## Starting the project locally
 1. Before starting the project, make sure you have installed [Docker](https://docs.docker.com/engine/install/).
 
-2. Clone [репозитарий plantsfinder_eng с GitHub](https://hub.docker.com/).
+2. Clone [the repository plantsfinder_eng с GitHub](https://hub.docker.com/).
 ```
 git clone git@github.com:Inozem/plantsfinder_eng.git
 ```
