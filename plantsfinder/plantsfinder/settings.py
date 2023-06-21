@@ -114,3 +114,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'frontend/media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# SSL certificate
+SECURE_SSL_REDIRECT = False
