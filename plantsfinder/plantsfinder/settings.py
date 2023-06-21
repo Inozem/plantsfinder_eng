@@ -117,3 +117,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # SSL certificate
 SECURE_SSL_REDIRECT = False
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
