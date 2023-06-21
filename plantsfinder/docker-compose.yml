@@ -25,14 +25,24 @@ services:
     image: nginx:1.21.3-alpine
     ports:
       - "80:80"
+      - "443:443"
 
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
       - static_value:/var/html/static/
       - media_value:/var/html/media/
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
 
     depends_on:
       - web
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email inozemtsevserge@gmail.com --agree-tos --no-eff-email --staging -d plantsfinder.net
 
 volumes:
   data_value:
