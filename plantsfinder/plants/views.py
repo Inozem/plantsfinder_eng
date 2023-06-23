@@ -20,6 +20,12 @@ PLANTS_TYPES = {
 PLANTS_PER_PAGE = 24
 
 
+def main_page(request):
+    """Creates main page for plantsfinder."""
+    template = 'main_page.html'
+    return render(request, template)
+
+
 def plants_list(request, category):
     """Creates plant selection pages."""
     template = 'plants/finder.html'

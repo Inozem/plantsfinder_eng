@@ -3,12 +3,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from . import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('plants/', include('plants.urls', namespace='plants')),
-    path('', views.main_page, name='main_page'),
+    path('', include('plants.urls', namespace='plants')),
 ]
 
 if settings.DEBUG:
