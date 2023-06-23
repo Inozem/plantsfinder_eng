@@ -130,3 +130,7 @@ dmypy.json
 
 # AWS
 *.pem
+
+# SSL certificate
+plantsfinder/certbot/
+
