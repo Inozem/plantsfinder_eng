@@ -134,3 +134,6 @@ dmypy.json
 # SSL certificate
 plantsfinder/certbot/
 
+#Docker
+docker-compose.yaml
+default.conf
