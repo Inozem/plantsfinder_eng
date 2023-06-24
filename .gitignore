@@ -135,5 +135,5 @@ dmypy.json
 plantsfinder/certbot/
 
 #Docker
-docker-compose.yaml
+docker-compose.yml
 default.conf
