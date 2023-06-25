@@ -101,28 +101,28 @@ class PlantBasicCharacteristics(PlantInfo):
         verbose_name='Sun exposure',
     )
     max_height = models.DecimalField(
-        verbose_name='Maximum height (м)',
+        verbose_name='Maximum height (m)',
         max_digits=5,
         decimal_places=2,
         validators=[MinValueValidator(
             0,
-            'The height of the plant cannot be less 0 м'
+            'The height of the plant cannot be less 0 m'
         ), MaxValueValidator(
             150,
-            'There are no plants on Earth higher than 150 м'
+            'There are no plants on Earth higher than 150 m'
         )],
         null=True,
     )
     max_width = models.DecimalField(
-        verbose_name='Maximum width (м)',
+        verbose_name='Maximum width (m)',
         max_digits=5,
         decimal_places=2,
         validators=[MinValueValidator(
             0,
-            'The width of the plant cannot be less 0 м'
+            'The width of the plant cannot be less 0 m'
         ), MaxValueValidator(
             150,
-            'There are no plants on Earth wider than 150 м'
+            'There are no plants on Earth wider than 150 m'
         )],
         null=True,
     )
