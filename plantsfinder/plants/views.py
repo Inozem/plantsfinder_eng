@@ -26,9 +26,15 @@ def main_page(request):
     return render(request, template)
 
 
+def plant_categories(request):
+    """Creates page with categories of plants."""
+    template = 'plants/categories.html'
+    return render(request, template)
+
+
 def plants_list(request, category):
     """Creates plant selection pages."""
-    template = 'plants/finder.html'
+    template = 'plants/filters.html'
     filters = request.GET
     plant_type_model = PLANTS_TYPES[category]
     category_verbose_name = plant_type_model._meta.verbose_name_plural.title()

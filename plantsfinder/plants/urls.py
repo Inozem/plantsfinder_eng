@@ -6,6 +6,7 @@ app_name = 'plants'
 
 urlpatterns = [
     path('', views.main_page, name='main_page'),
+    path('plants/', views.plant_categories, name='plant_categories'),
     path('plants/<str:category>/', views.plants_list, name='plants_list'),
     path(
         'plants/<str:category>/<str:plant_slug>/',

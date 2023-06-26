@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load filter %}
+{% load static %}
+{% block title %} {{ plant }} {% endblock %}
+{% block content %}
+<div class="d-flex align-content-start flex-wrap">
+  <div class="col-12" style="padding: 10px">
+    <h1>Plants search</h1>
+    <p>In order to start the selection of plants - select a category:</p>
+  </div>
+
+  <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 plant-card">
+    <a class="no-link" href="./deciduous">
+      <div style="height: 100%;">
+        <img class="plant-card-image" style="padding-bottom: 5px;" src="../../static/img/plant_categories/deciduous_trees_shrubs_lianes.webp" >
+        <b>Deciduous trees, shrubs and lianes</b>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 plant-card">
+    <a class="no-link" href="#">
+      <div style="height: 100%;">
+        <img class="plant-card-image" style="padding-bottom: 5px;" src="../../static/img/plant_categories/coniferous_trees_shrubs.webp" >
+        <p>Coniferous trees and shrubs (coming soon)</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 plant-card">
+    <a class="no-link" href="#">
+      <div style="height: 100%;">
+        <img class="plant-card-image" style="padding-bottom: 5px;" src="../../static/img/plant_categories/perennial_herbaceous.webp" >
+        <p>Perennial herbaceous plants (coming soon)</p>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -4,23 +4,23 @@
 {% block title %} {{ plant }} {% endblock %}
 {% block content %}
 <div class="d-flex align-content-start flex-wrap">
-<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding: 10px">
-  <img class="col-12"
-    {% if plant.image %}
-      src="../../../media/{{ plant.image }}" alt="{{ plant }}"
-    {% else %}
-      src="../../../static/img/no_image.webp"
-    {% endif %}
-  >
+  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding: 10px">
+    <img class="col-12"
+      {% if plant.image %}
+        src="../../../media/{{ plant.image }}" alt="{{ plant }}"
+      {% else %}
+        src="../../../static/img/no_image.webp"
+      {% endif %}
+    >
 </div>
 
-<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding: 10px">
-  <h1>{{ plant_name }}</h1>
-  <b>Brief description: </b>{{ plant.description }}<br>
-  <b>USDA zones:</b> {{ usda_zones_min_max }}<br>
-  <b>Sun exposure:</b> {{ sun }}<br>
-  <b>Soil:</b> {{ soil }}, optimal pH level {{ soil_ph }}<br>
-  <b>Soil moisture:</b> {{ soil_moisture }}<br>
-</div>
+  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding: 10px">
+    <h1>{{ plant_name }}</h1>
+    <b>Brief description: </b>{{ plant.description }}<br>
+    <b>USDA zones:</b> {{ usda_zones_min_max }}<br>
+    <b>Sun exposure:</b> {{ sun }}<br>
+    <b>Soil:</b> {{ soil }}, optimal pH level {{ soil_ph }}<br>
+    <b>Soil moisture:</b> {{ soil_moisture }}<br>
+  </div>
 </div>
 {% endblock %}

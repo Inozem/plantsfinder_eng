@@ -6,7 +6,7 @@
 <div class="filter-container-border col-xxl-3 col-xl-3 col-lg-4 col-12">
   <form class="d-flex align-content-start flex-wrap col-12" action="{{ domain }}{% url 'plants:plants_list' plant_category %}" method="get">
     <div class="col-12" style="padding: 0 8px 0 8px;">
-      <button type="submit">Найти</button></br>
+      <button type="submit">Search</button></br>
     </div>
     </br>
 
@@ -54,7 +54,7 @@
     {% endfor %}
 
     <div class="col-12 margin-tp-8 padding-lf-8">
-      <button type="submit">Найти</button></br>
+      <button type="submit">Search</button></br>
     </div>
   </form>
 </div>
@@ -66,7 +66,7 @@
       <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 col-xxl-4 plant-card">
         <a class="no-link" href="./{{ plant.slug }}">
           <div style="height: 100%;">
-            <img class="plant-card-image" 
+            <img class="plant-card-image" style="padding-bottom: 5px;"
               {% if plant.image %}
                 src="../../media/{{ plant.image }}" alt="{{ plant }}"
               {% else %}
@@ -79,7 +79,7 @@
       </div>
     {% endfor %}
   {% else %}
-  <p>По вашему запросу ничего не найдено.</p>
+  <p>Nothing was found according to your request.</p>
   {% endif%}
 
   {% if pagination %}
