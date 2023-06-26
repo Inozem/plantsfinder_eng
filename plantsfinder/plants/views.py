@@ -72,4 +72,3 @@ def plant_info(request, category, plant_slug):
         'soil_moisture': get_plant_soil_moisture(plant),
     }
     return render(request, template, context)
-
