@@ -125,3 +125,4 @@ def check_and_get_fields_presence(plants, plant_class, PlantInfo):
     """
     if len(plants) > 0 and len(plant_class.fields) == 0:
         plant_class.fields = get_fields_with_values(plant_class, PlantInfo)
+    return plant_class.fields

@@ -222,7 +222,7 @@ class Deciduous(PlantBasicCharacteristics):
     poison_parts = models.ManyToManyField(
         PoisonParts,
         related_name='poison_parts',
-        verbose_name='Toison parts',
+        verbose_name='Toxic parts',
     )
 
     class Meta:
