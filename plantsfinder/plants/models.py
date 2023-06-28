@@ -150,7 +150,7 @@ class Deciduous(PlantBasicCharacteristics):
     soil_ph = models.ManyToManyField(
         SoilPh,
         related_name='soil_ph',
-        verbose_name='Soil pH',
+        verbose_name='Soil Ph',
     )
     life_form = models.ManyToManyField(
         LifeForm,
@@ -169,8 +169,8 @@ class Deciduous(PlantBasicCharacteristics):
     )
     leaves_colour_changes = models.ManyToManyField(
         LeavesColourChanges,
-        related_name='leaves_colour_changes',
-        verbose_name='Leaves color changes',
+        related_name='leaf_colour_change',
+        verbose_name='Leaf color change',
     )
     young_leaves_colour = models.ManyToManyField(
         YoungLeavesColour,
@@ -185,17 +185,17 @@ class Deciduous(PlantBasicCharacteristics):
     bloom_colour = models.ManyToManyField(
         BloomColour,
         related_name='bloom_colour',
-        verbose_name='Flower color',
+        verbose_name='Flowering color',
     )
     blooming_period = models.ManyToManyField(
         BloomingPeriod,
         related_name='blooming_period',
-        verbose_name='Bloom season',
+        verbose_name='Bloom period',
     )
     fragrance = models.CharField(
         max_length=50,
         choices=CHOICES_YES_NO,
-        verbose_name='Presence of fragrance',
+        verbose_name='Fragrance',
         null=True,
     )
     bark_colour = models.ManyToManyField(
@@ -216,13 +216,13 @@ class Deciduous(PlantBasicCharacteristics):
     spines = models.CharField(
         max_length=50,
         choices=CHOICES_YES_NO,
-        verbose_name='The presence of spines',
+        verbose_name='Spikes',
         null=True,
     )
     poison_parts = models.ManyToManyField(
         PoisonParts,
         related_name='poison_parts',
-        verbose_name='Poison parts',
+        verbose_name='Toison parts',
     )
 
     class Meta:
