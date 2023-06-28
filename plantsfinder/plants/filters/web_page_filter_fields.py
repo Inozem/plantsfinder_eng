@@ -26,8 +26,8 @@ def sort_plant_fields(plant_fields):
 
 def get_plant_class_fields(plant_class, PlantInfo):
     """
-    Функция возвращает словарь назнаний полей и их моделей,
-    которые нужны для отображения на странице подбора растений.
+    Returns dictionary with names of fields
+    that should be on the web page and their models.
     """
     fields_comparison = {
         plant_class._meta.fields: PlantInfo._meta.fields,
