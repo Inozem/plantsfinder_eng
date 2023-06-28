@@ -91,7 +91,7 @@ class BarkColour(MultipleChoiceColourField):
     """Bark color class."""
     class Meta:
         verbose_name = 'Bark color'
-        verbose_name_plural = 'Bark colorы'
+        verbose_name_plural = 'Bark colors'
 
 
 class FruitColour(MultipleChoiceColourField):
