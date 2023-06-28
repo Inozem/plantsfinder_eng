@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 
 from plants.filters.filter_plants import filter_plants
-from plants.models import Deciduous
+from plants.filters.web_page_filter_fields import check_and_get_fields_presence
+from plants.models import Deciduous, PlantInfo
 from utils.get_text.plant_info import (get_plant_name,
                                        get_plant_usda_zones_min_max,
                                        get_plant_sun_types,
@@ -48,7 +49,8 @@ def plants_list(request, category):
         'plant_category': category,
         'category_verbose_name': category_verbose_name,
         'plants': page_obj,
-        'fields': plant_type_model.fields,
+        'fields': check_and_get_fields_presence(plants, plant_type_model,
+                                                PlantInfo),
         'filters': filters_min_max,
         'pagination': pagination,
         'query_string': delete_page_from_query_string(request),

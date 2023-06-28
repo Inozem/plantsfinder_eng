@@ -117,3 +117,11 @@ def get_fields_with_values(plant_class, PlantInfo):
             'values': ids_and_values
         }
     return plant_class_fields
+
+
+def check_and_get_fields_presence(plants, plant_class, PlantInfo):
+    """
+    Checks for the presence of fields plant class and returns fields.
+    """
+    if len(plants) > 0 and len(plant_class.fields) == 0:
+        plant_class.fields = get_fields_with_values(plant_class, PlantInfo)
