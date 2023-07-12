@@ -22,9 +22,9 @@ class MultipleChoiceCharField(models.Model):
         return self.name
 
 
-class MultipleChoiceColourField(MultipleChoiceCharField):
+class MultipleChoiceColorField(MultipleChoiceCharField):
     """Color class."""
-    COLOURS = (
+    COLORS = (
         'Black',
         'Blue',
         'Bronzish',
@@ -39,7 +39,7 @@ class MultipleChoiceColourField(MultipleChoiceCharField):
         'White',
         'Yellow',
     )
-    CHOICES = tuple((i, i) for i in COLOURS)
+    CHOICES = tuple((i, i) for i in COLORS)
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:

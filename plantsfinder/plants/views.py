@@ -12,7 +12,7 @@ from utils.get_text.plant_info import (get_plant_name,
 from utils.pagination.pagination import get_pagination
 from utils.query.string import delete_page_from_query_string
 
-PLANTS_TYPES = {
+PLANTS_CLASSES = {
     'deciduous': Deciduous,
     # 'coniferous': Coniferous,
     # 'herbaceous': Herbaceous,
@@ -37,7 +37,7 @@ def plants_list(request, category):
     """Creates plant selection pages."""
     template = 'plants/filters.html'
     filters = request.GET
-    plant_type_model = PLANTS_TYPES[category]
+    plant_type_model = PLANTS_CLASSES[category]
     category_verbose_name = plant_type_model._meta.verbose_name_plural.title()
     plants = plant_type_model.objects.all()
     filters_min_max = {}
@@ -61,10 +61,10 @@ def plants_list(request, category):
 def plant_info(request, category, plant_slug):
     """Creates page with the information about a plant."""
     template = 'plants/plant_info.html'
-    plant = get_object_or_404(PLANTS_TYPES[category], slug=plant_slug)
+    plant = get_object_or_404(PLANTS_CLASSES[category], slug=plant_slug)
     context = {
         'request': request,
-        'category': PLANTS_TYPES[category],
+        'category': PLANTS_CLASSES[category],
         'plant': plant,
         'plant_name': get_plant_name(plant),
         'usda_zones_min_max': get_plant_usda_zones_min_max(plant),

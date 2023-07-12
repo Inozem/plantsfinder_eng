@@ -3,12 +3,12 @@ from django.db.models import Max, Min
 from django.shortcuts import get_object_or_404
 
 FIELDS_ORDER = ['usda_zone', 'sun', 'soil_moisture', 'soil_type',
-                'soil_fertility', 'soil_ph', 'life_form',
-                'type_plant_deciduous', 'max_height', 'max_width',
-                'leaves_colour', 'leaves_colour_changes',
-                'young_leaves_colour', 'autumn_leaves_colour', 'bloom_colour',
-                'blooming_period', 'fragrance', 'bark_colour', 'fruit_colour',
-                'other_types_decoration', 'spines', 'poison_parts']
+                'soil_fertility', 'soil_ph', 'plant_type',
+                'foliage_type_deciduous', 'max_height', 'max_width',
+                'leaf_color', 'leaf_color_change', 'young_leaf_color',
+                'autumn_leaf_color', 'flowering_color', 'flowering_period',
+                'scent', 'bark_color', 'fruit_color', 'other_plant_features',
+                'hazardous']
 FIELDS_MIN_MAX = ('max_height', 'max_width', 'soil_ph')
 
 

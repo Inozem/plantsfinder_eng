@@ -1,121 +1,118 @@
-from utils.fields import (MultipleChoiceCharField, MultipleChoiceColourField,
+from utils.fields import (MultipleChoiceCharField, MultipleChoiceColorField,
                           MultipleChoiceMonthsCharField)
 
 CHOICES = {
-    'life form': ['Tree', 'Shrub', 'Ground cover shrub', 'Liana'],
-    'type plant': ['Deciduous', 'Semi-evergreen', 'Evergreen'],
-    'leaves colour changes': ['Autumn leaf color', 'Color of young leaves',
-                              'Not changing'],
-    'other types of decoration': ['Decoration in winter',
-                                  'Flowers appear before the leaves',
-                                  'Flowers appear after the leaves fall',
-                                  'Shape of branches', 'No other types'],
-    'poison parts': ['Bark', 'Roots', 'Leaves', 'Fruits', 'Seeds', 'Sap',
-                     'Flowers', 'Not poisonous'],
+    'plant type': ['Tree', 'Shrub', 'Ground cover shrub', 'Liana'],
+    'foliage type': ['Deciduous', 'Semi-evergreen', 'Evergreen'],
+    'leaf color change': ['Autumn foliage color', 'Young leaf color',
+                          'No change'],
+    'other plant features': ['Decorative in winter', 'Flowers before leaves',
+                             'Flowers after leaves fall', 'No other features'],
+    'hazardous': ['Toxic', 'Thorny'],
 }
 
 
-class LifeForm(MultipleChoiceCharField):
-    """Life form class."""
-    CHOICES = tuple((i, i) for i in CHOICES['life form'])
-    MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
-
-    class Meta:
-        verbose_name = 'Plant life form'
-        verbose_name_plural = 'Plant life forms'
-
-
-class TypePlantDeciduous(MultipleChoiceCharField):
-    """Deciduous plant type class."""
-    CHOICES = tuple((i, i) for i in CHOICES['type plant'])
+class PlantType(MultipleChoiceCharField):
+    """Plant type class."""
+    CHOICES = tuple((i, i) for i in CHOICES['plant type'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
         verbose_name = 'Plant type'
-        verbose_name_plural = 'plant types'
+        verbose_name_plural = 'Plant types'
 
 
-class LeavesColour(MultipleChoiceColourField):
-    """Leaves color class."""
-    class Meta:
-        verbose_name = 'Leaves color'
-        verbose_name_plural = 'Leaves colors'
-
-
-class LeavesColourChanges(MultipleChoiceCharField):
-    """Class of seasonal leaves color change."""
-    CHOICES = tuple((i, i) for i in CHOICES['leaves colour changes'])
+class FoliageTypeDeciduous(MultipleChoiceCharField):
+    """Deciduous foliage type class."""
+    CHOICES = tuple((i, i) for i in CHOICES['foliage type'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
-        verbose_name = 'Seasonal leaves color change'
-        verbose_name_plural = 'Seasonal leaves color changes'
+        verbose_name = 'Foliage type'
+        verbose_name_plural = 'Foliage types'
 
 
-class YoungLeavesColour(MultipleChoiceColourField):
+class LeafColor(MultipleChoiceColorField):
+    """Leaves color class."""
+    class Meta:
+        verbose_name = 'Leaf color'
+        verbose_name_plural = 'Leaf colors'
+
+
+class LeafColorChange(MultipleChoiceCharField):
+    """Class of seasonal leaves color change."""
+    CHOICES = tuple((i, i) for i in CHOICES['leaf color change'])
+    MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
+
+    class Meta:
+        verbose_name = 'Leaf color change'
+        verbose_name_plural = 'Leaf color change'
+
+
+class YoungLeafColor(MultipleChoiceColorField):
     """Young leaves color class."""
     class Meta:
-        verbose_name = 'Young leaves color'
-        verbose_name_plural = 'Young leaves colors'
+        verbose_name = 'Young leaf color'
+        verbose_name_plural = 'Young leaf colors'
 
 
-class AutumnLeavesColour(MultipleChoiceColourField):
+class AutumnLeafColor(MultipleChoiceColorField):
     """Autumn leaf color class."""
     class Meta:
         verbose_name = 'Autumn leaf color'
         verbose_name_plural = 'Autumn leaf colors'
 
 
-class BloomColour(MultipleChoiceColourField):
+class FloweringColor(MultipleChoiceColorField):
     """Flower color class."""
-    ADDITIONAL_CHOICES = ('Is not decorative', 'Does not have')
+    ADDITIONAL_CHOICES = ('Not vivid', 'Non-flowering')
     CHOICES = tuple((i, i) for i in ADDITIONAL_CHOICES)
-    MultipleChoiceColourField._meta.get_field('name').choices += CHOICES
+    MultipleChoiceColorField._meta.get_field('name').choices += CHOICES
 
     class Meta:
-        verbose_name = 'Flower color'
-        verbose_name_plural = 'Flower colors'
+        verbose_name = 'Flowering color'
+        verbose_name_plural = 'Flowering colors'
 
 
-class BloomingPeriod(MultipleChoiceMonthsCharField):
+class FloweringPeriod(MultipleChoiceMonthsCharField):
     """Bloom season class."""
-    CHOICES = (('Does not have', 'Does not have'), )
+    CHOICES = (('Non-flowering', 'Non-flowering'), )
     MultipleChoiceMonthsCharField._meta.get_field('name').choices += CHOICES
 
     class Meta:
-        verbose_name = 'Bloom season'
-        verbose_name_plural = 'Bloom seasons'
+        verbose_name = 'Flowering period'
+        verbose_name_plural = 'Flowering periods'
 
 
-class BarkColour(MultipleChoiceColourField):
+class BarkColor(MultipleChoiceColorField):
     """Bark color class."""
     class Meta:
         verbose_name = 'Bark color'
         verbose_name_plural = 'Bark colors'
 
 
-class FruitColour(MultipleChoiceColourField):
+class FruitColor(MultipleChoiceColorField):
     """Fruit color class."""
     class Meta:
         verbose_name = 'Fruit color'
         verbose_name_plural = 'Fruit color'
 
 
-class OtherTypesDecoration(MultipleChoiceCharField):
+class OtherPlantFeature(MultipleChoiceCharField):
     """Class of other types of decoration."""
-    CHOICES = tuple((i, i) for i in CHOICES['other types of decoration'])
+    CHOICES = tuple((i, i) for i in CHOICES['other plant features'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
-        verbose_name = 'Other type of decoration'
-        verbose_name_plural = 'Other types of decoration'
+        verbose_name = 'Other plant feature'
+        verbose_name_plural = 'Other plant features'
 
 
-class PoisonParts(MultipleChoiceCharField):
-    """Class of poisonous plant parts."""
-    CHOICES = tuple((i, i) for i in CHOICES['poison parts'])
+class Hazardous(MultipleChoiceCharField):
+    """Plant hazard class."""
+    CHOICES = tuple((i, i) for i in CHOICES['hazardous'])
     MultipleChoiceCharField._meta.get_field('name').choices = CHOICES
 
     class Meta:
-        verbose_name = 'Poisonous plant part'
-        verbose_name_plural = 'Poisonous plant parts'
+        verbose_name = 'Hazardous'
+        verbose_name_plural = 'Hazardous'

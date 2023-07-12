@@ -3,15 +3,14 @@ from django.db import models
 
 from environment.models import (SoilFertility, SoilMoisture, SoilPh, SoilType,
                                 Sun, UsdaZone)
-from phytomorphology.models import (AutumnLeavesColour, BarkColour,
-                                    BloomColour, BloomingPeriod, FruitColour,
-                                    LeavesColour, LeavesColourChanges,
-                                    LifeForm, OtherTypesDecoration,
-                                    PoisonParts, TypePlantDeciduous,
-                                    YoungLeavesColour)
+from phytomorphology.models import (AutumnLeafColor, BarkColor, FloweringColor,
+                                    FloweringPeriod, FoliageTypeDeciduous,
+                                    FruitColor, Hazardous, LeafColor,
+                                    LeafColorChange, OtherPlantFeature,
+                                    PlantType, YoungLeafColor)
 from plants.filters.web_page_filter_fields import get_fields_with_values
 
-CHOICES_YES_NO = (('Has', 'Has'), ('Does not have', 'Does not have'))
+CHOICES_YES_NO = (('Yes', 'Yes'), ('No', 'No'))
 
 
 class NameSynonym(models.Model):
@@ -35,41 +34,41 @@ class PlantInfo(models.Model):
     """Parent class for all plants."""
     name_species_english = models.CharField(
         max_length=250,
-        verbose_name='Name of the genus, species and form in English',
+        verbose_name='name of the genus, species and form in English',
         null=True,
     )
     name_species_latin = models.CharField(
         max_length=250,
-        verbose_name='Name of the genus, species and form in Latin',
+        verbose_name='name of the genus, species and form in Latin',
         null=True,
     )
     name_cultivar = models.CharField(
         max_length=250,
-        verbose_name='Species',
+        verbose_name='species',
         null=True,
         blank=True,
     )
     slug = slug = models.SlugField(
         max_length=75,
-        verbose_name='Link',
+        verbose_name='link',
         unique=True,
     )
     name_synonym = models.ForeignKey(
         NameSynonym,
         related_name='name_synonym',
-        verbose_name='Plant synonym',
+        verbose_name='plant synonym',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
     )
     description = models.TextField(
-        verbose_name='Plant description',
+        verbose_name='plant description',
         null=True,
         blank=True,
     )
     image = models.ImageField(
         upload_to='image/',
-        verbose_name='Image',
+        verbose_name='image',
         null=True,
         blank=True,
     )
@@ -93,15 +92,15 @@ class PlantBasicCharacteristics(PlantInfo):
     usda_zone = models.ManyToManyField(
         UsdaZone,
         related_name='usda_zone',
-        verbose_name='USDA zone',
+        verbose_name='hardiness zone (usda)',
     )
     sun = models.ManyToManyField(
         Sun,
         related_name='sun',
-        verbose_name='Sun exposure',
+        verbose_name='sunlight',
     )
     max_height = models.DecimalField(
-        verbose_name='Maximum height (m)',
+        verbose_name='maximum height range (meters)',
         max_digits=5,
         decimal_places=2,
         validators=[MinValueValidator(
@@ -114,7 +113,7 @@ class PlantBasicCharacteristics(PlantInfo):
         null=True,
     )
     max_width = models.DecimalField(
-        verbose_name='Maximum width (m)',
+        verbose_name='maximum width range (meters)',
         max_digits=5,
         decimal_places=2,
         validators=[MinValueValidator(
@@ -135,94 +134,88 @@ class Deciduous(PlantBasicCharacteristics):
     soil_type = models.ManyToManyField(
         SoilType,
         related_name='soil_type',
-        verbose_name='Soil type',
+        verbose_name='soil type',
     )
     soil_moisture = models.ManyToManyField(
         SoilMoisture,
         related_name='soil_moisture',
-        verbose_name='Soil moisture',
+        verbose_name='soil moisture level',
     )
     soil_fertility = models.ManyToManyField(
         SoilFertility,
         related_name='soil_fertility',
-        verbose_name='Soil fertility',
+        verbose_name='soil fertility',
     )
     soil_ph = models.ManyToManyField(
         SoilPh,
         related_name='soil_ph',
-        verbose_name='Soil Ph',
+        verbose_name='soil ph',
     )
-    life_form = models.ManyToManyField(
-        LifeForm,
-        related_name='life_form',
-        verbose_name='Life form',
+    plant_type = models.ManyToManyField(
+        PlantType,
+        related_name='plant_type',
+        verbose_name='plant type',
     )
-    type_plant_deciduous = models.ManyToManyField(
-        TypePlantDeciduous,
-        related_name='type_plant_deciduous',
-        verbose_name='Plant type',
+    foliage_type_deciduous = models.ManyToManyField(
+        FoliageTypeDeciduous,
+        related_name='foliage_type_deciduous',
+        verbose_name='foliage type',
     )
-    leaves_colour = models.ManyToManyField(
-        LeavesColour,
-        related_name='leaves_colour',
-        verbose_name='Leaves color',
+    leaf_color = models.ManyToManyField(
+        LeafColor,
+        related_name='leaf_color',
+        verbose_name='leaf color',
     )
-    leaves_colour_changes = models.ManyToManyField(
-        LeavesColourChanges,
+    leaf_color_change = models.ManyToManyField(
+        LeafColorChange,
         related_name='leaf_colour_change',
-        verbose_name='Leaf color change',
+        verbose_name='leaf color change',
     )
-    young_leaves_colour = models.ManyToManyField(
-        YoungLeavesColour,
-        related_name='young_leaves_colour',
-        verbose_name='Young leaves color',
+    young_leaf_color = models.ManyToManyField(
+        YoungLeafColor,
+        related_name='young_leaf_color',
+        verbose_name='young leaf color',
     )
-    autumn_leaves_colour = models.ManyToManyField(
-        AutumnLeavesColour,
-        related_name='autumn_leaves_colour',
-        verbose_name='Autumn leaves color',
+    autumn_leaf_color = models.ManyToManyField(
+        AutumnLeafColor,
+        related_name='autumn_leaf_color',
+        verbose_name='autumn leaf color',
     )
-    bloom_colour = models.ManyToManyField(
-        BloomColour,
-        related_name='bloom_colour',
-        verbose_name='Flowering color',
+    flowering_color = models.ManyToManyField(
+        FloweringColor,
+        related_name='flowering_color',
+        verbose_name='flowering color',
     )
-    blooming_period = models.ManyToManyField(
-        BloomingPeriod,
-        related_name='blooming_period',
-        verbose_name='Bloom period',
+    flowering_period = models.ManyToManyField(
+        FloweringPeriod,
+        related_name='flowering_period',
+        verbose_name='flowering period',
     )
-    fragrance = models.CharField(
+    scent = models.CharField(
         max_length=50,
         choices=CHOICES_YES_NO,
-        verbose_name='Fragrance',
+        verbose_name='scent',
         null=True,
     )
-    bark_colour = models.ManyToManyField(
-        BarkColour,
-        related_name='bark_colour',
-        verbose_name='Bark color',
+    bark_color = models.ManyToManyField(
+        BarkColor,
+        related_name='bark_color',
+        verbose_name='bark color',
     )
-    fruit_colour = models.ManyToManyField(
-        FruitColour,
-        related_name='fruit_colour',
-        verbose_name='Fruit color',
+    fruit_color = models.ManyToManyField(
+        FruitColor,
+        related_name='fruit_color',
+        verbose_name='fruit color',
     )
-    other_types_decoration = models.ManyToManyField(
-        OtherTypesDecoration,
-        related_name='other_types_decoration',
-        verbose_name='Other types of decoration',
+    other_plant_features = models.ManyToManyField(
+        OtherPlantFeature,
+        related_name='other_plant_features',
+        verbose_name='other plant features',
     )
-    spines = models.CharField(
-        max_length=50,
-        choices=CHOICES_YES_NO,
-        verbose_name='Spikes',
-        null=True,
-    )
-    poison_parts = models.ManyToManyField(
-        PoisonParts,
-        related_name='poison_parts',
-        verbose_name='Toxic parts',
+    hazardous = models.ManyToManyField(
+        Hazardous,
+        related_name='hazardous',
+        verbose_name='hazardous',
     )
 
     class Meta:
