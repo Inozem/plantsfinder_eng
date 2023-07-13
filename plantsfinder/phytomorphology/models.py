@@ -8,7 +8,7 @@ CHOICES = {
                           'No change'],
     'other plant features': ['Decorative in winter', 'Flowers before leaves',
                              'Flowers after leaves fall', 'No other features'],
-    'hazardous': ['Toxic', 'Thorny'],
+    'hazardous': ['Toxic', 'Thorny', 'Not hazardous'],
 }
 
 
