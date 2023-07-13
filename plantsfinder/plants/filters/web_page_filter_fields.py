@@ -12,6 +12,18 @@ FIELDS_ORDER = ['usda_zone', 'sun', 'soil_moisture', 'soil_type',
 FIELDS_MIN_MAX = ('max_height', 'max_width', 'soil_ph')
 
 
+def add_capital_letters(words):
+    """
+    Returns verbose name of a field with capital letters in proper places.
+    """
+    words = words.lower()
+    special_spelling = ('Soil pH', 'Hardiness zone (USDA)',)
+    special_spelling = {string.lower(): string for string in special_spelling}
+    if words in special_spelling:
+        return special_spelling[words]
+    return words.capitalize()
+
+
 def sort_plant_fields(plant_fields):
     """
     Returns a dictionary with field assignments and
@@ -111,7 +123,7 @@ def get_fields_with_values(plant_class, PlantInfo):
         ids_and_values = add_values(plant_class, field_values,
                                     fields_and_names, field_name)
         field_verbose_name = fields_and_names[field_name].verbose_name.title()
-        field_verbose_name = field_verbose_name.capitalize()
+        field_verbose_name = add_capital_letters(field_verbose_name)
         plant_class_fields[field_verbose_name] = {
             'field_related_name': field_name,
             'values': ids_and_values

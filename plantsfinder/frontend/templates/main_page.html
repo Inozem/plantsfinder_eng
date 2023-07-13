@@ -1,7 +1,10 @@
 {% extends "base.html" %}
+{% load filter %}
 {% load static %}
-{% block title %}Plantsfinder{% endblock %}
+{% block title %} {{ plant }} {% endblock %}
 {% block content %}
+<div class="d-flex align-content-start flex-wrap">
+
   <div class="d-flex align-content-start flex-wrap">
     <p style="margin: 10px">
       Plantsfinder is a plant catalog that automatically curates a selection of plants. 
@@ -10,6 +13,41 @@
       even for individuals without specialized knowledge. However, the plant descriptions 
       are comprehensive, providing all the necessary information for gardening work.
     </p>
+  </div>
+
+  <div class="col-12" style="padding: 10px">
+    <h1>Plants search</h1>
+    <p>In order to start the selection of plants - select a category:</p>
+  </div>
+
+  <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 plant-card">
+    <a class="no-link" href="./deciduous">
+      <div style="height: 100%;">
+        <img class="plant-card-image" style="padding-bottom: 5px;" src="../../static/img/plant_categories/deciduous_trees_shrubs_lianes.webp" >
+        <b>Deciduous trees, shrubs and lianes</b>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 plant-card">
+    <a class="no-link" href="#">
+      <div style="height: 100%;">
+        <img class="plant-card-image" style="padding-bottom: 5px;" src="../../static/img/plant_categories/coniferous_trees_shrubs.webp" >
+        <p>Coniferous trees and shrubs (coming soon)</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 plant-card">
+    <a class="no-link" href="#">
+      <div style="height: 100%;">
+        <img class="plant-card-image" style="padding-bottom: 5px;" src="../../static/img/plant_categories/perennial_herbaceous.webp" >
+        <p>Perennial herbaceous plants (coming soon)</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="d-flex align-content-start flex-wrap">
     <p style="margin: 10px">Plantsfinder proves helpful in the following situations:</p>
     <ol style="margin: 10px">
       <li>
@@ -39,4 +77,5 @@
       width, height, decorative features, and other relevant details.
     </p>
   </div>
+</div>
 {% endblock %}
