@@ -94,7 +94,7 @@ class BarkColor(MultipleChoiceColorField):
 class FruitColor(MultipleChoiceColorField):
     """Fruit color class."""
     CHOICES = (('No fruits', 'No fruits'), )
-    MultipleChoiceMonthsCharField._meta.get_field('name').choices += CHOICES
+    MultipleChoiceColorField._meta.get_field('name').choices += CHOICES
 
     class Meta:
         verbose_name = 'Fruit color'
