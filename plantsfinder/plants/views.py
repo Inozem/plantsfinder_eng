@@ -47,7 +47,7 @@ def plants_list(request, category):
     context = {
         'request': request,
         'plant_category': category,
-        'category_verbose_name': category_verbose_name,
+        'category_verbose_name': category_verbose_name.capitalize(),
         'plants': page_obj,
         'fields': check_and_get_fields_presence(plants, plant_type_model,
                                                 PlantInfo),

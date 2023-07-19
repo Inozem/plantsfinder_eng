@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load filter %}
 {% load static %}
-{% block title %}Подбор растений{% endblock %}
+{% block title %} {{ category_verbose_name}} {% endblock %}
 {% block content %}
 <div class="filter-container-border col-xxl-3 col-xl-3 col-lg-4 col-12">
   <form class="d-flex align-content-start flex-wrap col-12" action="{{ domain }}{% url 'plants:plants_list' plant_category %}" method="get">
