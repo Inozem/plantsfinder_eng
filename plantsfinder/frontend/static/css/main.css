@@ -121,8 +121,13 @@ summary:hover b{
   border-radius: 10px;
 }
 
+.plant-card a:hover {
+  color: #444;
+}
+
 .plant-card-image{
   width: 100%;
+  min-height: 240px;
 }
 
 /* Pagination */
