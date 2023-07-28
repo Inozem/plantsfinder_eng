@@ -10,10 +10,25 @@
     </div>
     </br>
 
+    <div class="col-sm-6 col-md-6 col-lg-12 col-xl-12 col-xxl-12 col-12 margin-tp-16">
+      <details
+        {% if "plant_name" in query_string %}
+          open
+        {% endif %}
+      class="col-12 padding-lf-8">
+          <summary>
+            <b>Plant name:</b></br>
+          </summary>
+          <div class="padding-lf-20" >
+            <input class="margin-tp-8" name="plant_name" type="text" value="{{ request.GET.plant_name }}" placeholder="Enter the text"><br>
+          </div>
+      </details>
+    </div>
+
     {% for field_name, field_items in fields.items %}
       <div class="col-sm-6 col-md-6 col-lg-12 col-xl-12 col-xxl-12 col-12 margin-tp-16">
         <details
-          {% with field_name_min=field_items.field_related_name|add:"-min" field_name_max=field_items.field_related_name|add:"-max"%}
+          {% with field_name_min=field_items.field_related_name|add:"_min" field_name_max=field_items.field_related_name|add:"_max"%}
             {% if field_items.field_related_name in request.GET or field_name_min in filters or field_name_max in filters %}
               open
             {% endif %}

@@ -10,7 +10,7 @@ from utils.get_text.plant_info import (get_plant_name,
                                        get_plant_soil_ph_min_max,
                                        get_plant_soil_moisture)
 from utils.pagination.pagination import get_pagination
-from utils.query.string import delete_page_from_query_string
+from utils.query.string import clean_query_string
 
 PLANTS_CLASSES = {
     'deciduous': Deciduous,
@@ -53,7 +53,7 @@ def plants_list(request, category):
                                                 PlantInfo),
         'filters': filters_min_max,
         'pagination': pagination,
-        'query_string': delete_page_from_query_string(request),
+        'query_string': clean_query_string(request),
     }
     return render(request, template, context)
 
