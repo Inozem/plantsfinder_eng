@@ -74,6 +74,7 @@ class PlantInfo(models.Model):
     )
 
     class Meta:
+        abstract = True
         ordering = ('name_species_english', 'name_cultivar', )
         unique_together = ('name_species_latin', 'name_cultivar', )
 
@@ -126,11 +127,11 @@ class PlantBasicCharacteristics(PlantInfo):
         null=True,
     )
 
+    class Meta:
+        abstract = True
 
-class Deciduous(PlantBasicCharacteristics):
-    """Class of deciduous trees, shrubs and lianes."""
-    fields = {}
 
+class SoilGroup(models.Model):
     soil_type = models.ManyToManyField(
         SoilType,
         related_name='soil_type',
@@ -151,6 +152,12 @@ class Deciduous(PlantBasicCharacteristics):
         related_name='soil_ph',
         verbose_name='soil ph',
     )
+
+    class Meta:
+        abstract = True
+
+
+class PlantTypeGroup(models.Model):
     plant_type = models.ManyToManyField(
         PlantType,
         related_name='plant_type',
@@ -161,6 +168,12 @@ class Deciduous(PlantBasicCharacteristics):
         related_name='foliage_type_deciduous',
         verbose_name='foliage type',
     )
+
+    class Meta:
+        abstract = True
+
+
+class LeafColorGroup(models.Model):
     leaf_color = models.ManyToManyField(
         LeafColor,
         related_name='leaf_color',
@@ -181,6 +194,12 @@ class Deciduous(PlantBasicCharacteristics):
         related_name='autumn_leaf_color',
         verbose_name='autumn leaf color',
     )
+
+    class Meta:
+        abstract = True
+
+
+class FloweringGroup(models.Model):
     flowering_color = models.ManyToManyField(
         FloweringColor,
         related_name='flowering_color',
@@ -197,26 +216,58 @@ class Deciduous(PlantBasicCharacteristics):
         verbose_name='scent',
         null=True,
     )
+
+    class Meta:
+        abstract = True
+
+
+class BarkColorGroup(models.Model):
     bark_color = models.ManyToManyField(
         BarkColor,
         related_name='bark_color',
         verbose_name='bark color',
     )
+
+    class Meta:
+        abstract = True
+
+
+class FruitColorGroup(models.Model):
     fruit_color = models.ManyToManyField(
         FruitColor,
         related_name='fruit_color',
         verbose_name='fruit color',
     )
+
+    class Meta:
+        abstract = True
+
+
+class OtherPlantsFeaturesGroup(models.Model):
     other_plant_features = models.ManyToManyField(
         OtherPlantFeature,
         related_name='other_plant_features',
         verbose_name='other plant features',
     )
+
+    class Meta:
+        abstract = True
+
+
+class HazardousGroup(models.Model):
     hazardous = models.ManyToManyField(
         Hazardous,
         related_name='hazardous',
         verbose_name='hazardous',
     )
+
+    class Meta:
+        abstract = True
+
+
+class Deciduous(PlantBasicCharacteristics, SoilGroup, PlantTypeGroup, LeafColorGroup, FloweringGroup, BarkColorGroup, FruitColorGroup, OtherPlantsFeaturesGroup, HazardousGroup):
+    """Class of deciduous trees, shrubs and lianes."""
+    fields = {}
 
     class Meta:
         verbose_name = 'Deciduous tree, shrub and liane'
