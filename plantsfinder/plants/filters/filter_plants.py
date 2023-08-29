@@ -1,3 +1,5 @@
+import time
+
 from django.db.models import Max, Min, Q
 
 
@@ -60,6 +62,7 @@ def filter_plants(plants, filters):
     creates a variable with the minimum and maximum values of the filters
     (if they were in the request).
     """
+    start = time.time()
     filters_min_max = {}
     if filters['plant_name'] and filters['plant_name'] != '':
         plants = filter_plants_with_plant_name(plants, filters['plant_name'])
@@ -74,4 +77,7 @@ def filter_plants(plants, filters):
                 filter_values = filters.getlist(filter_name)
                 filter_name += '__in'
                 plants = plants.filter(**{filter_name: filter_values})
+    print('!-----------------------!')
+    print(time.time() - start)
+    print('!-----------------------!')
     return plants, filters_min_max
