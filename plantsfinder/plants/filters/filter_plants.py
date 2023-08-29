@@ -1,4 +1,5 @@
 from django.db.models import Max, Min, Q
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 def get_clean_words(text):
@@ -61,8 +62,12 @@ def filter_plants(plants, filters):
     (if they were in the request).
     """
     filters_min_max = {}
-    if filters['plant_name'] and filters['plant_name'] != '':
-        plants = filter_plants_with_plant_name(plants, filters['plant_name'])
+    try:
+        plant_name = filters['plant_name']
+        if plant_name:
+            plants = filter_plants_with_plant_name(plants, plant_name)
+    except MultiValueDictKeyError:
+        pass
     if plants:
         for filter_name in filters:
             if (('_min' in filter_name or '_max' in filter_name)

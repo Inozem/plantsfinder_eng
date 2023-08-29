@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from plants.models import Deciduous
 
 PLANT_CLASSES = [Deciduous, ]
-TEST_DATA_AMOUNT = 35
+TEST_DATA_AMOUNT = 6000
 
 
 class Command(BaseCommand):
