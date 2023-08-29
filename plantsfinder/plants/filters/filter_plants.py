@@ -1,3 +1,5 @@
+import time
+
 from django.db.models import Max, Min, Q
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -61,6 +63,7 @@ def filter_plants(plants, filters):
     creates a variable with the minimum and maximum values of the filters
     (if they were in the request).
     """
+    start = time.time()
     filters_min_max = {}
     try:
         plant_name = filters['plant_name']
@@ -79,4 +82,7 @@ def filter_plants(plants, filters):
                 filter_values = filters.getlist(filter_name)
                 filter_name += '__in'
                 plants = plants.filter(**{filter_name: filter_values})
+    print('!-----------------------!')
+    print(time.time() - start)
+    print('!-----------------------!')
     return plants, filters_min_max
