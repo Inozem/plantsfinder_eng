@@ -17,7 +17,7 @@ class Command(BaseCommand):
     help = 'Creates a test super-user and test data for the database.'
 
     def handle(self, *args, **options):
-        User.objects.create_superuser('Anon', 'anon@test.com', 'qweqwe')
+        # User.objects.create_superuser('Anon', 'anon@test.com', 'qweqwe')
 
         for plant_class in PLANT_CLASSES:
             fields_comparison = (
